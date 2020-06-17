@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>셀렉터 정의하기</title>
+		<link rel="stylesheet" type="text/css" href="selecter.css">
+		<style type="text/css">
+			div > div > strong {
+				background: yellow;
+			}
+			div > ul > li > strong {
+				background: dodgerblue;
+			}
+			#list span {
+				color: forestgreen;
+			}
+			h3 : first-letter {
+				color: red;
+			}
+			li : hover {
+				background: yellowgreen ;
+			}
+		</style>
+	</head>
+	<body class="main">
+		<h3>Web Programming</h3><hr>
+		<div>
+			<div>2학기<strong>학습 내용</strong></div>
+			<ul id="list">
+				<li>HTML</li>
+				<li><strong>CSS</strong></li>
+				<li>JS</li>
+			</ul>
+			<div class="warning">60점 이하는 F</div>
+		</div>
+	</body>
+</html>

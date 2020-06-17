@@ -1,0 +1,23 @@
+<HTML>
+	<HEAD>	
+		<meta charset="utf-8">
+		<title>IFRAME</title>
+	</HEAD>	
+	<BODY>		
+		<h3>2개의 &lt;IFRAME&gt; 윈도우를 갖습니다.</h3>
+		<!-- srcdoc이 src보다 우선권이 높아 내부 내용이 우선 실행됨 -->
+		<!-- srcdoc = "안녕하세요"의 경우도 동일함 -->
+		<iframe src="iframe1.html" name="first" height="200" width="200" 
+		srcdoc="<HTML>
+					<HEAD>
+					</HEAD>
+					<BODY> 
+						안녕하세요 
+					</BODY>
+				</HTML>"></iframe>
+		<iframe src="iframe2.html" name="second" height="200" width="300"></iframe>
+		<iframe 
+		src="iframe3.html" name="second" height="1000" width="850">
+		</iframe>
+	</BODY>
+</HTML>

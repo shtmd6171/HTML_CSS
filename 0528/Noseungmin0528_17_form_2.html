@@ -1,0 +1,48 @@
+<HTML>
+	<HEAD>	
+		<meta charset="utf-8">
+		<title>생일정보 입력 폼 실습</title>
+	</HEAD>	
+	<BODY>
+	<h2>생일을 축하합니다</h2>
+	<hr>
+	당신의 생일은 2020년 5월 28일입니다.<br>
+	만약 제가 실수로 당신의 생일을 잘못 알고 있다면...<br>
+	수정하시고, 파티 시간과 장소를 입력하세요.<br><br>
+	<form>
+		<table border="1">
+			<tr>
+				<td colspan="3">생일</td>
+				<td><input type="data" value="2020-05-28"></td>
+			</tr>	
+			<tr>
+				<td>파티시간</td>
+				<td><input type="time"></td>
+			</tr>	
+			<tr>
+				<td>파티 장소</td>
+				<td><input type="text"></td>
+			</tr>	
+		</table>	
+		<table>
+			<caption>파티장 온도 제어 시스템</caption>
+			<tr>
+				<td>지속 시간</td>
+				<td><input type="number" min="0.0" max="10.0" step="0.5"></td>
+			</tr>
+			<tr>
+				<td>설정 온도 : 10&deg;</td>
+				<td><input type="range" min="10" max="30" list="temperatures" step="0.5">
+					<datalist id="temperatures">
+						<option value="12" label="low"></option>
+						<option value="20" label="midium"></option>
+						<option value="28" label="high"></option>
+					</datalist>
+				</td>
+				<td>30&deg;</td>
+			</tr>
+		</table>
+	</form>
+
+	</BODY>
+</HTML>

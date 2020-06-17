@@ -1,0 +1,57 @@
+<HTML>
+	<HEAD>	
+		<meta charset="utf-8">
+		<title>기본 테이블 만들기 테스트</title>
+	</HEAD>	
+	<BODY>	
+		<h3>기본 구조를 가진 표 만들기</h3>
+		<hr>
+		<!--
+		<table> : container
+		<cpation> : 표 제목 
+		<thread> : 표 그룹
+		<tfoot> : 바닥 셀 그룹 
+		<tbody> : 데이터 셀 그룹
+		<tr> : 행, 여러 <td><th> 포함 
+		<td> : 데이터 셀
+	 	-->
+		<!-- border 속성이 0이면 표의 선이 보이지 않음-->
+		
+		<table border="1">
+			<caption>1학기 성적</caption>
+			<thead>
+				<tr>
+					<th>이름</th>
+					<th>HTML</th>
+					<th>CSS</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td>합계</td>
+					<td>225</td>
+					<td>230</td>
+				</tr>
+				
+			</tfoot>
+			<tbody>
+				<tr>
+					<td>황기태</td>
+					<td>80</td>
+					<td>70</td>
+				</tr>
+				<tr>
+					<td>이재문</td>
+					<td>95</td>
+					<td>99</td>
+				</tr>
+				<tr>
+					<td>이병은</td>
+					<td>40</td>
+					<td>61</td>
+				</tr>
+			</tbody>
+
+		</table>
+	</BODY>
+</HTML>	
