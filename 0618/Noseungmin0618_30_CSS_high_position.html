@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>	
+		<meta charset="utf-8">
+		<title>relative 배치</title>
+		<style type="text/css">
+		 	div {
+		 		display: inline-block;
+		 		height: 50px;
+		 		width: 50px;
+		 		border: 1px solid lightgray;
+		 		text-align: center;
+		 		color: white;
+		 		background: red;
+		 	}
+
+		 	#down:hover {
+		 		position: relative;
+		 		left: 20px;
+		 		top: 20px;
+		 		background : green;
+		 	}
+
+		 	#up:hover {
+		 		position: relative;
+		 		right: 20px;
+		 		bottom: 20px;
+		 		background : green;
+		 	}
+		</style>
+	</HEAD>	
+	<BODY>	
+		<h3>상대배치, relative</h3>
+		<hr>
+		<div>T</div>
+		<div id="down">H</div>
+		<div>A</div>
+		<div id="up">N</div>
+		<div>K</div>
+		<div>S</div>
+
+
+	</BODY>
+</HTML>

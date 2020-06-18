@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>	
+		<meta charset="utf-8">
+		<title>display 프로퍼티</title>
+		<style type="text/css">
+		div {
+			border : 2px solid yellowgreen;
+			color: blue;
+			background: aliceblue;
+		}
+		span {
+			border : 3px dotted red;
+			background: yellow;
+		}
+
+		.mdiv {
+			border : 2px solid red;
+			color: blue;
+			background: skyblue;
+		}
+
+		div div div {
+			border : 2px solid green;
+			color: blue;
+			background: violet;
+		}
+		</style>
+	</HEAD>	
+	<BODY>	
+		<h3>인라인, 인라인 블록, 블록</h3>
+		<hr>
+		나는 <div style="display: none;">div(none)입니다.</div><br>
+		나는 <div style="display: inline;">div(inline)입니다.</div><br>
+		나는 <div style="display: inline-block; height: 50px">div(inline-block)입니다.</div><br>
+		나는 <div>div<span style="display: block;">span(block)</span>입니다</div>
+		나는 <div style="display: block; width: 200px; height: 200px">
+			<div style="display: inline;">div1(inline)</div>
+			<div style="display: inline;">div2(inline)</div>
+			<div style="display: inline;">div3(inline)</div>
+			<div style="display: inline;">div4(inline)</div>
+			<span style="display: block;">span(block)</span>
+			<div class="mdiv" style="display: inline-block; height: 100px">div(inline-block)
+				<div style="display: inline;">div5(inline)</div>
+				<div style="display: inline;">div6(inline)</div>
+				<div style="display: inline;">div7(inline)</div>
+				<div style="display: inline;">div8(inline)</div>
+				<span style="display: block;">span(block)</span>
+			</div>
+		</div>
+</HTML>
