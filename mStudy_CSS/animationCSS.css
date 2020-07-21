@@ -12,12 +12,27 @@ animation 속성은 애니메이션의 속성, 상태를 지정한다.
 animation 하위 속성
 animation-delay : animation 시작 지정
 animation-direction : 종료후 재시작, 역방향 진행 지정
+------
+direction : normal - 기본값
+direction : reverse - to에서 from으로
+direction : alternate - 홀수번째는 normal 짝수번째는 reverse
+direction : alternate-reverse - 홀수번째는 reverse 짝수번째는 normal
+
 animation-duration : 한 사이클의 애니메이션이 얼마에 걸쳐 진행 되는지 지정
 animation-iteration-count : 애니메이션 반복 수 지정
 animation-name : 애니메이션 중간 상태 지정 (@keyframes)
 animation-play-state : 애니메이션을 멈춤 시작 지정
+------
+play-state : running - 실행 (기본 값)
+play-state : paused - 일시정지
+
 animation-timing-function : 중간 상태들의 전환을 어떤 시간 간격에 진행하는지 지정
 animation-fill-mode : 애니메이션 시작전, 끝난 후 값 적용 지정
+------
+fill-mode : none - 대기시 from 설정 X / 종료시 실행 전 상태로 설정
+fill-mode : forwards - 대기시 from 설정 X / 종료시 to 설정 O
+fill-mode : backwards - 대기시 from 설정 O / 종료시 실행 전 상태로 설정
+fill-mode : both - 대기시 from 설정 O / 종료시 to 설정 O
 
 @keyframes : 애니메이션의 중간 상태를 지정하고, 2개 이상의 중간 상태를 정의함
 0%(대신 from)는 애니메이션 시작점 , 100%(대신 to)는 끝지점을 의미
@@ -26,37 +41,97 @@ animation-fill-mode : 애니메이션 시작전, 끝난 후 값 적용 지정
 h1 {
   -webkit-animation-duration : 3s;
   -webkit-animation-name : slidein;
+  -webkit-animation-fill-mode : both;
 
 }
 
 h2 {
-  -webkit-animation-duration : 4s;
+  -webkit-animation-duration : 3s;
   -webkit-animation-name : inform;
-  -webkit-animation-iteration-count : infinite;
+  -webkit-animation-iteration-count : 2;
   -webkit-animation-direction : alternate;
+  -webkit-animation-fill-mode : forwards;
 
+}
+
+div {
+  /* animation-name을 여러개 두어 따로 지정할 수 있다 */
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      animation-name: move, fadeOut, changeColor;
+      animation-duration: 5s;
+      animation-delay: 2s;
+      animation-iteration-count: infinite;
+    }
+
+.div2 {
+  width: 100px;
+      height: 100px;
+      background: red;
+      position: relative;
+      /*
+      모든 애니메이션 프로퍼티를 한번에 지정한다. 값을 지정하지 않은 프로퍼티에는 기본값이 지정된다.
+      animation: name | duration | timing-function | delay |iteration-count
+                direction |  fill-mode |  play-state
+      animation-name : div2
+      animation-duration : 5s
+      animation-iteration-count : infinite
+      가 밑에와 같은 뜻
+      */
+      animation: div2 5s infinite;
+      animation-direction: normal;
 }
 
 @-webkit-keyframes slidein {
   from {
     margin-left: 100%;
     width: 100%;
+    font-size: 80%;
   }
 
   to {
     margin-left: 0%;
-    width : 100%;
+    width : 40%;
+
   }
 }
 
 @-webkit-keyframes inform {
   from {
-    margin-left: 100%;
+    left: 100;
     width: 100%;
+    font-size: 85%;
   }
 
   to {
-    margin-left: 0%;
+    left: 0;
     width : 100%;
+    font-size: 2em;
   }
+}
+
+@keyframes move {
+  0%   { margin-left: 100%;}
+  50%  { margin-left: 50%; }
+  75%  { margin-left: 25%; }
+  100% { margin-left: 0%;  }
+
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  75%  { opacity: 0.5; }
+  to  { opacity: 0; }
+}
+@keyframes changeColor {
+  from { background-color: blue; }
+  to  { background-color: red; }
+}
+@keyframes div2 {
+  0%   { left : 0px; top: 0px; background-color: violet;}
+  25%  { left : 200px; top: 0px; background-color: blue;}
+  50%  { left : 200px; top: 200px; background-color: green;}
+  75%  { left : 0px; top: 200px; background-color: yellow;}
+  100% { left : 0px; top: 0px;  background-color: red;}
 }
