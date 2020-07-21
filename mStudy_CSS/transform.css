@@ -1,0 +1,64 @@
+/*
+transform 속성을 이용해
+rotation(회전)
+skewing(비틀기)
+scaling(확대/축소)
+tranlation(평면과 3D공간 이동)
+
+transform-origin :
+원점의 위치를 지정. 기본 값은 left, top
+rotation, skewing, scaling와 같은 한 점 기준으로 수행되는
+변환에 이 속성을 지정 가능
+
+transform :
+적용될 변환을 지정
+
+rotate(angle) : angle만큼 회전 (+,- deg)
+skew(x-angle,y-angle) : X를 x만큼  Y를 y만큼 기울임 (+,- deg)
+skewX(x-angle) : X축을 n만큼 기울임 (+,- deg)
+skewY(y-angle) : Y축을 y만큼 기울임 (+,- deg)
+scale(x,y) : X를 x만큼  Y를 y만큼 확대/축소 (단위 0,양수)
+scaleX(n) :X축을 n만큼 확대/축소 (단위 0,양수)
+scaleY(n) :X축을 n만큼 확대/축소 (단위 0,양수)
+translate(x,y) : X를 x만큼  Y를 y만큼 이동 (단위 px, %, em)
+translateX(n) : X축을 n만큼 이동 (단위 px, %, em)
+translateY(n) : Y축을 y만큼 이동 (단위 px, %, em)
+*/
+
+.box {
+    width: 95px;
+    height: 95px;
+    line-height: 95px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+  }
+  .original {
+    margin: 30px;
+    border: 1px dashed #cecfd5;
+    background: #eaeaed;
+    float: left;
+  }
+  .child {
+    background: #2db34a;
+    cursor: pointer;
+  }
+  .translate {
+    transform: translate(25px,50px);
+  }
+  .translate:hover {
+    transition: transform 1s linear;
+    transform: translate(0px, 0px);
+  }
+  .scale {
+    transform: scale(.75);
+  }
+  .skew {
+    transform: skew(20deg,3deg);
+  }
+  .rotate {
+    transform: rotate(-50deg);
+  }
+  .complex {
+    transform: scale(.7) rotate(20deg);
+  }
