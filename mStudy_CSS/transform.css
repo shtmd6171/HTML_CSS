@@ -39,6 +39,7 @@ translateY(n) : Y축을 y만큼 이동 (단위 px, %, em)
     background: #eaeaed;
     float: left;
   }
+
   .child {
     background: #2db34a;
     cursor: pointer;
@@ -53,12 +54,56 @@ translateY(n) : Y축을 y만큼 이동 (단위 px, %, em)
   .scale {
     transform: scale(.75);
   }
+  .scale:active {
+    transition: transform 2s linear;
+    transform: scale(0);
+  }
   .skew {
-    transform: skew(20deg,3deg);
+    transform: skew(20deg,20deg);
+  }
+  .skew:hover {
+    transition: transform 1s linear;
+    transform: skew(0deg,0deg)
   }
   .rotate {
     transform: rotate(-50deg);
   }
+  .rotate:hover {
+    transition: transform 1s linear;
+    transform: rotate(0deg);
+  }
   .complex {
     transform: scale(.7) rotate(20deg);
+  }
+  .complex:hover {
+    transition: transform 0.5s linear;
+    transform: scale(1) rotate(0deg);
+  }
+
+  /* transform-origin :
+  요소의 기본기준점을 설정할 때 사용된다.
+  기본기준점은 요소의 정중앙이다(50%,50%).
+  */
+  .scale1:hover {
+    transition: transform 1s linear;
+    transform-origin: center;
+    transform: scale(.5);
+  }
+
+  .scale2:hover {
+    transition: transform 1s linear;
+    transform-origin: 0 0;
+    transform: scale(.35);
+  }
+
+  .scale3:hover {
+    transition: transform 1s linear;
+    transform-origin: 75% 25%;
+    transform: scale(.5);
+  }
+
+  .translate1:hover {
+    transition: transform 0.25s linear;
+    transform-origin: 100% 100%;
+    transform: translate(-50px, 25px);
   }
