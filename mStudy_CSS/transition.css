@@ -1,0 +1,106 @@
+/*
+transition은 CSS 프로퍼티의 값이 변화할 때,
+값의 변화가 일정시간에 걸쳐 일어나도록 하는 것.
+
+transition의 프로퍼티
+transition-property : 트랜지션의 대상이 되는 프로퍼티를 지정
+transition-duration : 트랜지션이 일어나는 지속시간
+transition-timing-function : 트랜지션 효과를 위한 수치 함수 (def ease)
+------
+timing-function: ease - 느리게 시작, 빨라졌다가 느려지면서 종료
+timing-function: linear - 등속운동으로 시작 종료
+timing-function: ease-in - 느리게 시작, 일정 속도 도달 시 등속운동
+timing-function: ease-out - 일정속도 등속으로 시작, 느려지면서 종료
+timing-function: ease-in-out - ease와 비슷
+
+transition-delay : 프로퍼티 변화 시점과 실제 시작시간 사이의 대기시간
+transition : 모든 프로퍼티를 한번에 지정
+*/
+#div0 {
+  width: 100px;
+  height: 100px;
+  background: red;
+  /* 트랜지션 효과: 모든 프로퍼티의 변화를 2초에 걸쳐 전환한다.
+  해당 부분은 div:hover에 기술하면 hoverOn 때만 작동된다.*/
+  transition: all 1s;
+}
+
+#div0:hover {
+  border-radius: 50%;
+  background: blue;
+}
+
+#div1 {
+  width: 100px;
+  height: 50px;
+  background-color: red;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  transition-property: width, background-color;
+  transition-duration: 2s, 2s;
+}
+
+#div1:hover {
+  width: 300px;
+  background-color: blue;
+}
+
+.timing {
+  font: bold 16px/50px "Open Sans";
+  color: white;
+  text-align: center;
+  width: 100px;
+  height: 50px;
+  background-color: red;
+  margin-bottom: 10px;
+  transition: width 1s, background 1s;
+}
+
+.timing:hover {
+  width: 300px;
+  background: blue;
+}
+
+.e {
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+
+.l {
+  transition-timing-function: linear;
+  transition-delay: 0.5s;
+}
+
+.ei {
+  transition-timing-function: ease-in;
+  transition-delay: 1s;
+}
+
+.eo {
+  transition-timing-function: ease-out;
+  transition-delay: 1.5s;
+}
+
+.eio {
+  transition-timing-function: ease-in-out;
+  transition-delay: 2s;
+}
+
+.mine {
+  width: 250px;
+  height: 200px;
+  background-color: yellowgreen;
+  color: white;
+  font: bold 15px/200px "Open Sans";
+  text-align: center;
+  transition-property: width, height, background, color, font;
+  transition-duration: 2s, 2s, 2s, 2s, 2s;
+}
+
+.mine:hover {
+  width : 100px;
+  height: 400px;
+  font: bold 15px/400px "Open Sans";
+  background: skyblue;
+  color: black;
+}

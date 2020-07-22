@@ -1,0 +1,54 @@
+.radius {
+  margin: 25px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  text-align: center;
+  font: bold 15px/100px "Open Sans";
+  color: white;
+  background-color: yellowgreen;
+  float: left;
+  animation: anima 2s infinite;
+  animation-direction :alternate;
+  transition: background-color 2s, width 2s, height 2s, border-radius 2s,
+  font 2s;
+}
+
+
+
+@keyframes anima {
+  from {
+    transform: rotate(-20deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}
+
+.radius:hover {
+  width: 400px;
+  height: 400px;
+  background: gre;
+  border-radius: 15%;
+  font:bold 30px/400px "Open Sans"
+}
+.radius:active {
+  animation-play-state: paused;
+}
+
+.one {
+  animation-delay : 0s
+
+}
+
+.two{
+  animation-delay : 0.5s
+
+}
+
+.three{
+  animation-delay : 1s
+
+}
