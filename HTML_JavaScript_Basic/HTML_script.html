@@ -1,0 +1,50 @@
+<h1><a href="index.html">WEB</a></h1>
+<!--
+this란 해당 tag 자체를 지정한다,input tag에서는
+document.querySelector("#night_day")를 말한다.
+또 document.querySelector("#night_day")는
+<input id="night_day" ...>를 가리키기 때문에 세개가 같은 값을 의미한다.
+this = document.querySelector("#night_day") = <input id="night_day" ...>
+
+document.querySelectorAll('a')는 a 태그를 가진 첫번째 내용인
+<h1><a href="index.html">WEB</a></h1>만을 가져온다.
+따라서 document.querySelectorAll('a')을 지정해서
+a태그를 가진 모든 tag를 불러올 수 있다.
+
+-->
+
+  <input id="night_day" type="button" value="night" onclick="
+    var target = document.querySelector('body');
+    if(this.value === 'night'){
+      target.style.backgroundColor = 'black';
+      target.style.color = 'white';
+      this.value = 'day';
+
+      var alist = document.querySelectorAll('a');
+      var i = 0;
+      while(i < alist.length){
+        alist[i].style.color = 'powderblue';
+        i = i + 1;
+      }
+    } else {
+      target.style.backgroundColor = 'white';
+      target.style.color = 'black';
+      this.value = 'night';
+
+      var alist = document.querySelectorAll('a');
+      var i = 0;
+      while(i < alist.length){
+        alist[i].style.color = 'blue';
+        i = i + 1;
+      }
+    }
+  ">
+  <ol>
+    <li><a href="1.html">HTML</a></li>
+    <li><a href="2.html">CSS</a></li>
+    <li><a href="3.html">JavaScript</a></li>
+  </ol>
+  <h2>JavaScript</h2>
+  <p>
+    JavaScript (/ˈdʒɑːvəˌskrɪpt/[6]), often abbreviated as JS, is a high-level, dynamic, weakly typed, prototype-based, multi-paradigm, and interpreted programming language. Alongside HTML and CSS, JavaScript is one of the three core technologies of World Wide Web content production. It is used to make webpages interactive and provide online programs, including video games. The majority of websites employ it, and all modern web browsers support it without the need for plug-ins by means of a built-in JavaScript engine. Each of the many JavaScript engines represent a different implementation of JavaScript, all based on the ECMAScript specification, with some engines not supporting the spec fully, and with many engines supporting additional features beyond ECMA.
+  </p>
