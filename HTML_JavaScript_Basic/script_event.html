@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <!--On ~ 속성은 JS문법에 종속된다.-->
+    <input type="button" value="HI" onclick="alert('HI')">
+    <!--onchange는 input 내용이 변한 후
+    input에서 벗어날 때(마우스 포인터 이동) 수행된다.-->
+    <input type="text" value="" onchange="alert('changed')">
+    <!--onchange는 input 내부에서 키를 눌렀을 때 수행된다.-->
+    <input type="text" onkeydown="alert('keydown')">
+  </body>
+</html>
