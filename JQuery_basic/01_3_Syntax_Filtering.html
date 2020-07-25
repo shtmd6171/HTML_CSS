@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Element Selection</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script>
+
+		$(function() {
+			// ':' 를 사용해 선택요소를 더욱 세분화 해 필터링 할 수 있다.
+			// :has(요소)를 통해 다른 tag를 지닌 tag만을 지정할 수 있다.
+			// 더욱 자세한 필터링 선택자는 00_CDN.html의 1번 주석에서 확인할 수 있다.
+			$("#li").on("click", function() {
+				$("li:has(span)").text("span tag를 가진 요소");
+				$("p:last").text("P tag 중 마지막 위치에 위치한 요소");
+			});
+
+      // 더욱 자세한 input 필터링 선택자는 00_CDN.html의 2번 주석에서 확인할 수 있다.
+			$("#chx").on("click", function() {
+				$(":checked").next().text("체크된 요소");
+			});
+
+
+		});
+	</script>
+</head>
+
+<body>
+
+
+	<h1>선택한 요소의 필터링</h1>
+	<ul>
+		<li>첫 번째 아이템이에요!</li>
+		<li><span>두 번째</span> 아이템이에요!</li>
+		<li>세 번째 아이템이에요!</li>
+	</ul>
+	<button id="li">필터링</button>
+
+	<h1>Form-input 요소의 필터링</h1>
+
+	<form>
+		<input type="checkbox" name="lecture" value="html"> <span>HTML</span><br>
+		<input type="checkbox" name="lecture" value="css"> <span>CSS</span><br>
+		<input type="checkbox" name="lecture" value="javascript"> <span>자바스크립트</span><br>
+		<input type="checkbox" name="lecture" value="jquery" checked> <span>제이쿼리</span><br>
+	</form>
+	<button id="chx">필터링</button>
+
+</body>
+
+</html>
