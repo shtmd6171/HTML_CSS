@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Element Selection</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<style>
+		table,
+		tr,
+		td {
+			border: 2px solid red;
+			border-collapse: collapse;
+		}
+
+		table {
+			margin-bottom: 15px;
+		}
+	</style>
+	<script>
+		/*
+		기존 요소의 외부에 추가
+		1. .before() : 선택한 요소의 '바로 앞에' 새로운 요소나 값 추가
+		2. .after() : 선택한 요소의 '바로 뒤에' 새로운 요소나 값 추가
+		3. .insertBefore() : 선택한 요소를 '해당 요소의 앞에' 삽입
+		4. .insertAfter() : 선택한 요소를 '해당 요소의 뒤에' 삽입
+		*/
+		$(function() {
+			// .before() : 선택한 요소의 '바로 앞에' 새로운 요소나 값 추가
+			$("#beforebtn1").on("click", function() {
+				// 두번째 td 바로 앞에 셀 추가
+				$("#Secondtd").before("<td>before 새로운 셀</td>");
+			});
+			$("#beforebtn2").on("click", function() {
+				// 첫번째 tr 바로 앞에 행 추가
+				$("#Firsttr").before("<tr><td>before 새로운 행</td></tr>");
+			});
+
+
+			// .after() : 선택한 요소의 '바로 뒤에' 새로운 요소나 값 추가
+			$("#Afterbtn1").on("click", function() {
+				// 두번째 td 바로 뒤에 셀 추가
+				$("#Secondtd").after("<td>After 새로운 셀</td>");
+			});
+			$("#Afterbtn2").on("click", function() {
+				// 첫번째 tr 바로 뒤에 행 추가
+				$("#Firsttr").after("<tr><td>After 새로운 행</td></tr>");
+			});
+
+			// .insertBefore() : 선택한 요소를 '해당 요소의 앞에' 삽입
+			$("#insertBeforebtn1").on("click", function() {
+				$("<td>insertBefore 새로운 셀</td>").insertBefore("#Secondtd");
+			});
+			$("#insertBeforebtn2").on("click", function() {
+				$("<tr><td>insertBefore 새로운 행</td></tr>").insertBefore("#Firsttr");
+			});
+			// .insertAfter() : 선택한 요소를 '해당 요소의 뒤에' 삽입
+			$("#insertAfterbtn1").on("click", function() {
+				$("<td>insertAfter 새로운 셀</td>").insertAfter("#Secondtd");
+			});
+			$("#insertAfterbtn2").on("click", function() {
+				$("<tr><td>insertAfter 새로운 행</td></tr>").insertAfter("#Firsttr");
+			});
+
+		});
+	</script>
+</head>
+
+<body>
+	<h1>.before() 메소드</h1>
+	<table>
+		<tr id="Firsttr">
+			<td id="Firsttd">첫 번째 셀</td>
+			<td id="Secondtd">두 번째 셀</td>
+		</tr>
+	</table>
+	<button id="beforebtn1">Before td 추가</button>
+	<button id="beforebtn2">Before tr 추가</button><br>
+	<button id="Afterbtn1">After td 추가</button>
+	<button id="Afterbtn2">After tr 추가</button><br>
+	<button id="insertBeforebtn1">insertBefore td 추가</button>
+	<button id="insertBeforebtn2">insertBefore tr 추가</button><br>
+	<button id="insertAfterbtn1">insertAfter td 추가</button>
+	<button id="insertAfterbtn2">insertAfter tr 추가</button><br>
+
+</body>
+
+</html>
