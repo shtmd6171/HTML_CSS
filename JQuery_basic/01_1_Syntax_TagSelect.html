@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Element Selection</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script>
+		//(document).ready(function(){}); 를 사용하면 문서가 로드되면 시작한다.
+		//(window).onload(function(){}); 를 사용하면 창이 로드되면 시작한다.
+		//(function(){})를 이용하여 보장된 짧은 코드를 이용할 수 있다.
+		$(function() {
+			//jQuery의 기본 문법은
+			//$(선택자).동작함수(); 로 이루어진다.
+			//선택자 내에 전달되는 인수는 반드시 ""의 형태를 유지해아한다.
+
+			//<p>요소 전체 중 하나를 클릭하면 아래 function이 실행된다.
+			// on 태그를 통해 동작을 제어 할 수 있다.
+			$("p").on("click", function() {
+				$("span").css("fontSize", "28px"); //<span>요소를 모두 선택함.
+				$("#FR").css("border", "2px solid orange"); // ID가 FR인 것을 선택함.
+
+				// class를 지정해 적용이 가능하다.
+				// JS의 getElementsByClassName()과 같은 역할을 한다.
+				$(".C").css("backgroundColor", "yellowgreen"); // class가 C인 것을 선택함.
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+	<h1>HTML 태그 선택자</h1>
+	<p id="FR">이제부터 <span>제이쿼리</span>를 다 같이
+	<span>공부</span>해보죠!!</p>
+	<p>마우스로 글씨를 클릭해보세요!!</p>
+	<!-- class 명이 같아 tag 다르더라도 같이 작동된다. -->
+	<p class="C">클래스로 지정할 수 있는 JQuery 문법</p>
+	<div class="C">클래스로 지정할 수 있는 JQuery 문법</div>
+
+</body>
+
+</html>
