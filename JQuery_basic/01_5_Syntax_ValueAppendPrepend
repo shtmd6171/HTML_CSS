@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Element Selection</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script>
+		/*
+		기존 요소의 내부에 추가
+		1. .append() : 선택한 요소의 '마지막'에 새로운 요소나 값 추가
+		2. .prepend() : 선택한 요소의 '처음'에 새로운 요소나 값 추가
+		3. .appendTo() : 선택한 요소를 '해당 요소의 마지막'에 삽입
+		4. .prependTo() : 선택한 요소를 '해당 요소의 처음'에 삽입
+		*/
+		$(function() {
+			//.append() : 선택한 요소의 '마지막'에 새로운 요소나 값 추가
+			$("#btn1").on("click", function() {
+				$("#list1").append("<li>추가 아이템</li>");
+			});
+			//.prepend() : 선택한 요소의 '처음'에 새로운 요소나 값 추가
+			$("#btn2").on("click", function() {
+				$("#list1").prepend("<li>추가 아이템</li>");
+			});
+			//.appendTo() : 선택한 요소를 '해당 요소의 마지막'에 삽입
+			$("#firstBtn1").on("click", function() {
+				$("#firstItem").appendTo("#list2");
+			});
+			$("#secondBtn1").on("click", function() {
+				$("#secondItem").appendTo("#list2");
+			});
+			//.prependTo() : 선택한 요소를 '해당 요소의 처음'에 삽입
+			$("#firstBtn2").on("click",function(){
+				$("#firstItem").prependTo("#list2");
+			});
+			$("#secondBtn2").on("click",function(){
+				$("#secondItem").prependTo("#list2");
+			});
+
+
+
+		});
+	</script>
+</head>
+
+<body>
+	<h1>.append(), prepend() 메소드</h1>
+	<ul id="list1">
+		<li>첫 번째 아이템</li>
+		<li>두 번째 아이템</li>
+		<li>세 번째 아이템</li>
+	</ul>
+	<button id="btn1">Append</button>
+	<button id="btn2">Prepend</button>
+
+	<h1>.appendTo(), prependTo() 메소드</h1>
+<ul id="list2">
+	<li id="firstItem">첫 번째 아이템</li>
+	<li id="secondItem">두 번째 아이템</li>
+</ul>
+<button id="firstBtn1">AppendTo First</button>
+<button id="secondBtn1">AppendTo Second</button><br>
+<button id="firstBtn2">PrependTo First</button>
+<button id="secondBtn2">PrependTo Second</button>
+
+
+</body>
+
+</html>
