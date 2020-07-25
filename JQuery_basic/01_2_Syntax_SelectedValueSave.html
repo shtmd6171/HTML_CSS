@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Element Selection</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script>
+
+		$(function() {
+
+			// attr은 선택한 속성 값을 가져오거나 추가한다.
+			// 선택자에 []을 통해 속성값을 주면 해당 속성을 가진 요소만 선택된다.
+			// 속성값을 지정할 때는 ''를 이용하여야 한다.
+			$(".BTN[value='BUTTON']").on("click", function() {
+				$(".BTN[value='BUTTON']").attr("value", "버튼");
+			});
+
+			$(".BTN[value='BTN']").on("click", function() {
+				// tag 속성을 가져와 다른 값에 추가하는 방법
+				var Pcount = $("p");
+				var TXT = $(".BTN[value='BTN']").attr('value');
+				$("#TXT").attr("value", TXT);
+				// text를 사용하면 내용을 작성하는 태그(div, p ..)에
+				// 내용을 삽입할 수 있다.
+				$("#span").text(TXT);
+        $("#pcount").text(" Ptag의 갯수는" + Pcount.length);
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+	<h1>선택한 요소의 저장</h1>
+	<!-- value값이 BUTTON인 tag만 작동된다. -->
+	<input class="BTN" type="button" value="BUTTON"><br>
+	<input class="BTN" type="button" value="BTN">
+	<input id="TXT" type="text" value="BUTTON"><br>
+	<span id="span"></span><br>
+  <span id="pcount"></span>
+
+
+</body>
+
+</html>
