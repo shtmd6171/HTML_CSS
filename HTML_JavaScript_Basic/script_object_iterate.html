@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h2>Object</h2>
+    <script type="text/javascript">
+      var Animal = {
+        "Dog" : "Greyhound",
+        "Cat" : "Norwegian forest",
+        "Bird" : "Bald eagle"}
+
+
+      document.write(Animal.Dog);
+      // 객체 값 추가
+      Animal.Penguin = "Emperor penguin";
+      // 띄어쓰기가 포함된 경우 배열의 형식으로 사용 가능
+      Animal["marine life"] = "Jellyfish";
+      // 객체 순회방식
+      // Array, Map, Set, String 타입은 for of를 사용한다
+      for (var key in Animal) {
+        document.write(key +"="+Animal[key]+"<br>");
+      }
+    </script>
+     <h2>Object function</h2>
+     <script type="text/javascript">
+     // 객체 내 함수 추가 방식
+     Animal.showAll2 = function() {
+       for (var key in this) {
+         if (key !== "showAll2" ) {
+           document.write(key +"="+this[key]+"<br>");
+         }
+       }
+     }
+     Animal.showAll2();
+     </script>
+  </body>
+</html>
