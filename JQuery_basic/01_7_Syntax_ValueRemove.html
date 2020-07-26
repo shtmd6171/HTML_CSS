@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Element Remove</title>
+	<style>
+		div { border: 2px solid green; margin: 10px; }
+		#container { border: 2px solid orange; }
+	</style>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script>
+		/*
+		기존 요소를 포함하는 요소의 추가
+		1. .remove() : 선택한 요소를 DOM 트리에서 삭제 (연관된 제이쿼리 데이터나 이벤트 모두함께 삭제)
+		2. .detach() : 선택한 요소를 DOM 트리에서 삭제 (연관된 제이쿼리 데이터나 이벤트 계속 유지)
+		3. .empty() :  선택한 요소의 자식 요소를 모두 삭제 (선택된 요소 자체는 삭제 X)
+		4. .unwrap() : 선택한 요소의 부모 요소를 삭제
+		*/
+		$(function() {
+			//.remove() : 선택한 요소를 DOM 트리에서 삭제
+			$("#btn1").on("click", function() {
+				// "content"에서 각각 first, second인 요소를 모두 삭제함
+				$(".content").remove(".first, .second");
+			});
+
+
+      //.선택한 요소를 DOM 트리에서 삭제 (연관된 제이쿼리 데이터나 이벤트 계속 유지)
+			var value;
+			$("#btn2").on("click", function() {
+				// class가 content인 요소 전체 삭제하고, 이 값을 value에 삽입
+				value = $(".content").detach();
+			});
+			$("#btn2_1").on("click", function() {
+				// detach로 삭제된 요소를 다시 추가한다. (데이터가 유지되기 때문에 가능)
+				$("#DV").append(value);
+			});
+
+
+			//.empty() :  선택한 요소의 자식 요소를 모두 삭제 (선택된 요소 자체는 삭제 X)
+			$("#btn3").on("click", function() {
+				$("#DV").empty();
+			});
+
+
+			//.unwrap() : 선택한 요소의 부모 요소를 삭제
+			$("#btn4").on("click", function() {
+				// 모든 span요소의 부모 요소(div)를 삭제함
+				// 한번 더 삭제 시 div의 부모 요소(container)를 삭제함
+				$("span").unwrap();
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+	<h1>.remove() 메소드</h1>
+	<div id="DV">
+		<div class="content first">첫 번째 컨텐츠</div>
+		<div class="content second">두 번째 컨텐츠</div>
+		<div class="content third">세 번째 컨텐츠</div>
+		<div class="content four">네 번째 컨텐츠</div>
+	</div>
+	<br>
+	<button id="btn1">Remove</button><br>
+	<button id="btn2">Detach</button>
+	<button id="btn2_1">Detach Back</button><br>
+	<button id="btn3">Empty</button>
+
+	<h1>.unwrap() 메소드</h1>
+		<div id="container">
+			<div><span>첫 번째</span> 컨텐츠</div>
+			<div><span>두 번째</span> 컨텐츠</div>
+			<div><span>세 번째</span> 컨텐츠</div>
+		</div>
+	<button id="btn4">Unwrap</button>
+
+</body>
+
+</html>
