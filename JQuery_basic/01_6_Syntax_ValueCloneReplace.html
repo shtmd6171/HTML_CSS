@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Element Clone</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script>
+		/*
+		기존 요소를 포함하는 요소의 추가
+		1. .clone() : 선택한 요소를 복사해 새 요소를 생성
+		2. .replaceAll() : 선택한 요소 하나를 지정된 요소 각각에 대체
+		3. .replaceWith() : 선택한 요소 하나를 지정된 요소 전체에 대체
+		  		(.replaceAll()와 비슷하나, 소스와 타겟 위치가 반대)
+		*/
+		$(function() {
+			//.clone() : 선택한 요소를 복사해 새 요소를 생성
+			$("#btn1").on("click", function() {
+				// firstItem1를 복사해 list에 추가
+				$("#firstItem1").clone().appendTo("#list");
+			});
+
+			//.replaceAll() : 선택한 요소 하나를 지정된 요소 각각에 대체
+			$("#btn2").on("click", function() {
+				// firstItem2를 item 각 요소에 대체
+				$("#firstItem2").replaceAll(".item"); // li 목록은 그대로
+			});
+
+			//.replaceWith() : 선택한 요소 하나를 지정된 요소 전체에 대체
+			$("#btn3").on("click", function() {
+				// firstItem2를 item 모든 요소에 대체
+				// 후위 pram으로 HTML형식 문자열, 제이쿼리 객체, HTML DOM 요소, 배열 etc 전달 가능
+				// 여기서는 제이쿼리 객체 타입 ($("#firstItem2"))을 넘겼다.
+				$(".item").replaceWith($("#firstItem2"));  // li 목록이 하나로
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+	<h1>.clone() 메소드</h1>
+	<ul id="list">
+		<li id="firstItem1">첫 번째 아이템</li>
+		<li>두 번째 아이템</li>
+		<li>세 번째 아이템</li>
+	</ul>
+	<button id="btn1">아이템 복사</button>
+
+	<h1>.replaceAll(), .replaceWith() 메소드</h1>
+	<ul>
+		<li class="item" id="firstItem2">첫 번째 아이템이에요!</li>
+		<li class="item" id="secondItem">두 번째 아이템이에요!</li>
+		<li class="item" id="thirdItem">세 번째 아이템이에요!</li>
+	</ul>
+	<button id="btn2">replaceAll</button>
+	<button id="btn3">replaceWith</button>
+
+</body>
+
+</html>
