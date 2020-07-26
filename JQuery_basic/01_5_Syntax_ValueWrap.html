@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Element Selection</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<style>
+		div { margin: 10px; }
+		.content { border: 2px solid yellow; }
+		.wrapper { border: 2px solid green; }
+	</style>
+	<script>
+		/*
+		기존 요소를 포함하는 요소의 추가
+		1. .wrap() : '선택한 요소'를 포함하는 새로운 요소를 추가
+		2. .wrapAll() : '선택한 모든 요소'를 포함하는 새로운 요소를 추가
+		3. .wrapInner() : '선택한 요소'가 '포함되는' 기존의 요소를 추가
+		*/
+		$(function() {
+			//.wrap() : '선택한 요소'를 포함하는 새로운 요소를 추가
+			$("#btn1").on("click", function() {
+					// class가 content인 tag를 wrapper 에 포함시킨다.
+					$(".content").wrap("<div class='wrapper'></div>");
+			});
+			//.wrapAll() : '선택한 모든 요소'를 포함하는 새로운 요소를 추가
+			$("#btn2").on("click", function() {
+					// class가 content인 모든 tag를 wrapper 에 포함시킨다.
+					$(".content").wrapAll("<div class='wrapper'></div>");
+			});
+			//.wrapInner() : '선택한 요소'가 포함되는 기존의 요소를 추가
+			$("#btn3").on("click", function() {
+					// wrapper이 포함된 tag를 class가 content인 기존 태그 내부에 추가한다.
+					$(".content").wrapInner("<div class='wrapper'></div>");
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<h1>기존요소가 포함되는 요소 추가</h1>
+	<div class="content">첫 번째 컨텐츠</div>
+	<div class="content">두 번째 컨텐츠</div>
+	<button id="btn1">wrap</button>
+	<button id="btn2">wrapAll</button>
+	<button id="btn3">wrapInner</button>
+
+
+</body>
+
+</html>
