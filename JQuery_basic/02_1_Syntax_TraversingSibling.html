@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Element Traversing</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<style>
+	.container * {
+		display: block;
+		border: 1px solid lightgray;
+		padding: 5px;
+		margin: 15px;
+	}
+
+</style>
+	<script>
+		/*
+		- 트리 탐색(tree traversing)
+				특정 요소로부터 다른 요소들과의 관계를 통해 선택하길 원하는 요소까지
+				DOM 트리를 검색해 나아가는 과정.
+		- 트리 탐색의 종류
+				1. 조상(ancestor) 요소 탐색
+		    2. 형제(sibling) 요소 탐색
+		    3. 자손(descendant) 요소 탐색
+
+		형제(sibling) 요소 탐색
+		1. .siblings() : 형제 요소 중에서 지정한 선택자에 해당하는 요소를 모두 선택
+		2. .next() : 형제 요소 중에서 선택한 요소 바로 다음 위치의 요소를 선택
+		3. .nextAll() : 형제 요소 중에서 선택한 요소 다음 위치의 모든 요소를 선택
+		4. .nextUntil() : 형제 요소 중에서 전달받은 선택자에 해당하는 요소 바로 이전까지의 요소만을 모두 선택
+		5. .prev() : 선택한 요소의 바로 이전에 위치한 형제 요소를 선택
+		6. .prevAll() : 선택한 요소의 이전에 위치한 형제 요소를 모두 선택
+		7. .prevUntil() : 선택한 요소의 형제 요소 중에서 지정한 선택자에 해당하는 요소 바로 다음까지의 요소를 모두 선택
+		*/
+		$(function() {
+			// .siblings() : 형제 요소 중에서 지정한 선택자에 해당하는 요소를 모두 선택
+			$("#btn1").on('click',function(){
+					$("#main").siblings()
+					.css('border','2px dashed red');
+			});
+
+
+			//.next() : 형제 요소 중에서 선택한 요소 바로 다음 위치의 요소를 선택
+			$("#btn2").on('click',function(){
+					$("#main").next()
+					.css('border','2px dashed blue');
+			});
+
+
+			//.nextAll() : 형제 요소 중에서 선택한 요소 다음 위치의 모든 요소를 선택
+			$("#btn3").on('click',function(){
+					$("#main").nextAll()
+					.css('border','2px dashed green');
+			});
+
+			//.nextUntil() : 형제 요소 중에서 전달받은 선택자에 해당하는 요소 바로 이전까지의 요소만을 모두 선택
+			$("#btn4").on('click',function(){
+					// h3를 기준으로 뒤쪽 값을 전부 가져오는데, 단 h6 앞 까지만 허용한다.
+					// 즉, h3뒤의 div ~ h6앞인 div 까지만 가져옴
+					$("h3").nextUntil("h6")
+					.css('border','2px dashed orange');
+			});
+
+
+			//.prev() : 선택한 요소의 바로 이전에 위치한 형제 요소를 선택
+			$("#btn5").on('click',function(){
+					$("#main").prev()
+					.css('border','2px dashed orange');
+			});
+
+
+			//.prevAll() : 선택한 요소의 이전에 위치한 형제 요소를 모두 선택
+			$("#btn6").on('click',function(){
+					$("#main").prevAll()
+					.css('border','2px dashed orange');
+			});
+
+
+
+			//.prevUntil() : 선택한 요소의 형제 요소 중에서 지정한 선택자에 해당하는 요소 바로 다음까지의 요소를 모두 선택
+			$("#btn7").on('click',function(){
+					// h3를 기준으로 앞쪽 값을 전부 가져오는데, 단 div 뒤 까지만 허용한다.
+					// 즉, div의 뒤인 h1 ~ h3의 앞인 h2까지만 가져옴
+					$("h3").prevUntil("div")
+					.css('border','2px dashed orange');
+			});
+
+
+		});
+	</script>
+</head>
+
+<body>
+	<h1>.parent() 메소드</h1>
+	<div class="container">
+		<div>DIV</div>
+		<h1>H1</h1>
+		<h2>H2</h2>
+		<h3>H3</h3>
+		<div class="container">MAIN의 자손요소
+			<div>MAIN</div>
+			<h4>H4 2</h4>
+			<h5>H5 2</h5>
+			<h6>H6 2</h6>
+		</div>
+		<h4 id="main">MAIN</h4>
+		<h5>H5</h5>
+		<div>DIV</div>
+		<h6>H6</h6>
+	</div>
+
+
+	<button id="btn1">MAIN의 Siblings</button><br>
+	<button id="btn2">p 요소의 Next</button><br>
+	<button id="btn3">p 요소의 NextAll</button><br>
+	<button id="btn4">p 요소의 NextUntil</button><br>
+	<button id="btn5">p 요소의 Prev</button><br>
+	<button id="btn6">p 요소의 PrevAll</button><br>
+	<button id="btn7">p 요소의 PrevUntil</button><br>
+</body>
+
+</html>
