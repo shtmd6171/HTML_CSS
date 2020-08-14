@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <style media="screen">
+      #pad {
+        background: #def;
+        border: 1px solid #aaa;
+      }
+
+      #ball {
+        position: relative;
+      }
+      #box {
+        width : 640px;
+        height : 480px;
+        background: green;
+        border : 1px solid #444;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+
+        $('.um').css('color','red');
+        var val = $('.um').html();
+        $('h2').html(val);
+        var val2 = $('.texting').attr('texting');
+        $('h3').html(val2);
+        $('.um').on('click',function(){
+          $('.um').css('color','blue');
+        });
+          // .click 가능
+          $('.um').click(function(){
+          $('.um').css('color','blue');
+        });
+
+        // 해당요소를 기본적으로 활성화 시킴
+        $('.texting').focus();
+        // 해당 요소가 활성화 되었을 때  focus를 이용한다.
+        $('input').focus(function(){ $(this).css('background','yellow') });
+        // 해당 요소가 포커스를 잃었을 때  focus를 이용한다.
+        $('input').blur(function(){ $(this).css('background','grey') });
+
+        $('.btn').click(function() { $(this).slideUp() });
+        // double click
+        $('.btn').dblclick(function() { $(this).hide() });
+
+        // keypress의 eventhandler는 function 타입, eventdata는 어느타입이든 상관없다.
+        $(document).keypress(function(event) {
+          key = String.fromCharCode(event.which)
+          if (key >= 'a' && key <= 'z' || key >= 'A' && key <= 'Z' || key >= '0' && key <= '9') {
+                $('#result').html(''+ key)
+                event.preventDefault()
+            }
+        });
+
+        canvas = $('#pad')[0];
+        context = canvas.getContext("2d");
+        pendown = false;
+
+        $('#pad').mousemove(function(event) {
+          var xpos = event.pageX = canvas.offsetLeft;
+          var ypos = event.pageY = canvas.offsetTop;
+
+          if(pendown) {
+            context.lineTo(xpos, ypos);
+          } else {
+            context.moveTo(xpos, ypos);
+          }
+          context.stroke();
+        });
+        $('#pad').mousedown(function() {pendown = true});
+        $('#pad').mouseup(function() {pendown = false});
+
+        $('#test').mouseenter(function() {$(this).html('HEY')});
+        $('#test').mouseleave(function() {$(this).html('GO')});
+
+        /* .hide( duration [, easing ] [, complete ] )
+        duration : slow, fast 또는 숫자, default 400
+        easing : 사라지는 방식, swing, linear
+        complete : 사라진 뒤 실행 함수
+        */
+        $('#hide').click(function() { $('#text').hide('swing')});
+        $('#show').click(function() { $('#text').show('slow','linear')});
+
+        /* .fadeOut | fadeIn | fadeToggle ( [duration ] [, easing ] [, complete ] )
+        duration : slow, fast 또는 숫자, default 400
+        easing : 사라지는|나타나는 방식, swing, linear
+        complete : 사라진|나타난 뒤 실행 함수
+        .fadeTo( duration, opacity [, easing ] [, complete ] )
+        opcity : 투명도 0 - 1
+        */
+        $('#fadeout').click(function() { $('#text2').fadeOut('slow')});
+        $('#fadein').click(function() { $('#text2').fadeIn('slow')});
+        $('#fadetoggle').click(function() { $('#text2').fadeToggle('slow')});
+        $('#fadeto').click(function() { $('#text2').fadeTo('slow', 0.5)});
+        /* .slideUp | slideDown | slideToggle( [duration ] [, easing ] [, complete ] )
+        duration : slow, fast 또는 숫자, default 400
+        easing : 사라지는|나타나는 방식, swing, linear
+        complete : 사라진|나타난 뒤 실행 함수
+        */
+        $('#slideup').click(function() { $('#para').slideUp('slow','swing')});
+        $('#slidedown').click(function() { $('#para').slideDown('fast')});
+        $('#slidetoggle').click(function() { $('#para').slideToggle('slow')});
+
+        bounce();
+
+        /* .animate( properties [, duration ] [, easing ] [, complete ] )
+        duration : slow, fast 또는 숫자, default 400
+        easing : 사라지는|나타나는 방식, swing, linear
+        complete : 사라진|나타난 뒤 실행 함수
+        */
+        function bounce() {
+          $('#ball')
+            .animate({left:'270px', top:'380px'},'slow','linear')
+            .animate({left:'540px', top:'190px'},'slow','linear')
+            .animate({left:'270px', top:'0px'},'slow','linear')
+            .animate({left:'0px', top:'190px'},'slow','linear', bounce)
+        }
+
+        $('li').parent().css('font-weight', 'bold');
+        $('li').parent('.parent').css('list-style-type', 'circle');
+        $('.btn').click(function(){
+          $('.sibiling').siblings().css('color','orange');
+          $('.children').children().css('color','red');
+          $('.next').next().css('color','blue');
+          $('.prev').prev().css('color','yellow');
+        });
+
+        pets = {
+          Scratchy : 'guinea pig',
+          squeeky  : 'guinea pig',
+          fluffy : 'rabbit',
+          snoopy : 'dog'
+        }
+
+        guineapigs = []
+        /* .each( function )
+        .each()는 선택한 요소가 여러 개일 때 각각에 대하여 반복하여 함수를 실행
+        특정 조건을 만족할 때 반복 작업에서 빠져려면  return false
+
+        사용 방식
+        1. 선택자 없이 사용해 사용할 배열을 매개변수로 지정
+           $.each(array, function(index,item) {}
+
+        2. 선택자를 사용해 생성된 배열을 사용
+           $(selector).each(function(index,item) {}
+        */
+        $.each(pets, function(name,type)
+        {
+           if(type == 'guinea pig') guineapigs.push(name)
+        })
+
+        $('.info').html('guinea pig name :' + guineapigs.join(','))
+
+        $.get('urlget.php?url=amazon.com/gp/aw',function(data)
+         {
+          $('#info2').html(data)
+        });
+
+        $.post('urlpost.php',{url:'amazon.com/gp/aw'},function(data)
+         {
+          $('#info2').html(data)
+        });
+
+
+
+      });
+    </script>
+    <title></title>
+
+  </head>
+  <body>
+    <h1 class="um">
+      학현쿤
+    </h1>
+    <h2></h2>
+    <h3></h3>
+
+    <input type="text" class="texting" name="texting" value=""></input>
+    <input><br>
+
+    <button type="button" class="btn" name="button">btn1</button>
+    <button type="button" class="btn" name="button">btn2</button>
+    <button type="button" class="btn" name="button">btn3</button>
+    <button type="button" class="btn" name="button">btn4</button><br>
+
+    pressed : <div id="result"></div>
+
+    <canvas id="pad" width="480" height="320"></canvas>
+
+    <h4 id="test">pass the mouse over me</h4>
+
+    <button id="hide">HIDE</button>
+    <button id="show">SHOW</button>
+    <p id="text">Click the Hide and Show buttons</p>
+
+    <button id="fadeout">fadeout</button>
+    <button id="fadein">fadein</button>
+    <button id="fadetoggle">fadetoggle</button>
+    <button id="fadeto">fadeto</button>
+    <p id="text2">Click buttons above</p>
+
+    <button id="slideup">slideUp</button>
+    <button id="slidedown">slidedown</button>
+    <button id="slidetoggle">slidetoggle</button>
+    <p id="para">Click buttons above</p>
+
+    <div id="box">
+      <img id="ball" src="ball.png">
+    </div>
+
+    <ul>
+      <li>item 1</li>
+      <ul class="children">
+        <li>item 1-1</li>
+        <li>item 1-2</li>
+        <li>item 1-3</li>
+      </ul>
+      <li class="next">item 2</li>
+      <li class="prev">item 3</li>
+    </ul>
+    <ul class="parent">
+      <li>item 1</li>
+      <li>item 2</li>
+      <li>item 3</li>
+    </ul>
+    <ul>
+      <li class="sibiling">item 1</li>
+      <li>item 2</li>
+      <li>item 3</li>
+    </ul>
+    <button class="btn">BTN</button>
+
+    <div class="info">
+
+    </div>
+
+    <div class="info2">
+
+    </div>
+
+
+
+
+  </body>
+</html>
