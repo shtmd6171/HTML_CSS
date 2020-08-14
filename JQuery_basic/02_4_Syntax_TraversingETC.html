@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Etc Traversing</title>
+	<style media="screen">
+		.boldFont {
+			color: green;
+			font-weight: bold;
+		}
+	</style>
+	<script type="text/javascript">
+	pets = {
+		Scratchy: 'guinea pig',
+		squeeky: 'guinea pig',
+		fluffy: 'rabbit',
+		snoopy: 'dog'
+	}
+	guineapigs = []
+	</script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script>
+		/*
+  - 트리 탐색(tree traversing)
+		 특정 요소로부터 다른 요소들과의 관계를 통해 선택하길 원하는 요소까지
+		 DOM 트리를 검색해 나아가는 과정.
+  - 트리 탐색의 종류
+		 1. 조상(ancestor) 요소 탐색
+		 2. 형제(sibling) 요소 탐색
+		 3. 자손(descendant) 요소 탐색
+		 4. 기타(etc) 요소 탐색
+
+   기타(etc) 요소 탐색
+	 1. .add() : 선택한 요소의 집합에 전달받은 요소를 추가
+	 2. .each() : 선택한 요소 집합의 요소마다 전달받은 콜백 함수를 실행
+	 3. .end() : 마지막으로 실행한 메소드의 실행 전 상태로 선택한 요소의 집합을 복원
+	 4. .offsetParent() : 선택한 요소를 위치시킬 때 기준으로 사용된 조상 요소를 선택
+	 5. .contents() : 선택한 요소의 자식(child) 요소를 텍스트 노드와 주석 노드까지 모두 포함하여 선택
+ */
+		$(function() {
+			// .add() : 선택한 요소의 집합에 전달받은 요소를 추가
+			$("#btn1").on("click", function() {
+				// add는 '선택한 집합'에 새 요소를 추가한다.
+				// append는 '선택한 요소'의 '마지막'에 새 요소를 추가했다.
+				$("li").add("p")
+					.append("<li>p contents</li>");
+
+			});
+
+
+			// .each() : 선택한 요소 집합의 요소마다 전달받은 콜백 함수를 실행
+			$("#btn2").click(function() {
+				/* 1. 선택자를 사용해 생성된 배열을 사용
+	           $(selector).each(function(index,item) {}
+					*/
+				// li의 집합을 모아 배열을 생성, each로 각자 지정하여 수행하고 있다.
+				$("li").each(function() {
+					/* .toggleClass( className )
+					.toggleClass()로 선택한 요소에 클래스(Class) 값을 토글 가능
+					*/
+					$(this).toggleClass("boldFont");
+				});
+
+				/* 2. 선택자 없이 사용해 사용할 배열을 매개변수로 지정
+           $.each(array, function(index,item) {}
+				*/
+				// 직접 배열을 사용, each로 각자 지정하여 수행하고 있다.
+				$.each(pets, function(key, value) {
+					if (value == 'guinea pig') guineapigs.push(key)
+				});
+				$('.each').html(guineapigs.join(', '));
+
+			});
+
+
+			//.end() : 마지막으로 실행한 메소드의 실행 전 상태로 선택한 요소의 집합을 복원
+			$("#btn3").click(function() {
+				// find('li')를 통해 li인 자손들만 지정 했으나..
+				// end()를 통해서 그 전상태로 복원했음 ( $("ul") )
+				// 그 결과 자손인 li만이 아니라 ul 자체를 css가 적용됨
+				$("ul").find('li').end().css('color','orange');
+			});
+
+
+		});
+	</script>
+</head>
+
+<body>
+
+	<h1>.add() 메소드</h1>
+	<ul> Ul
+		<li>first</li>
+		<li class="second">second</li>
+		<li>third</li>
+	</ul>
+	<p>new p</p>
+	<span class="each"></span><br>
+	<button id="btn1">li 요소 집합에 p 요소를 추가</button>
+	<button id="btn2">li each</button>
+	<button id="btn3">ul end</button>
+
+</body>
+
+</html>
