@@ -28,11 +28,14 @@
   2. .find() : 전달받은 선택자에 해당하는 자손 요소를 모두 선택 ( * 선택자를 통해 전체 지정 가능)
 	*/
 		$(function() {
+			// .children() : 선택한 요소의 자식(child) 요소를 모두 선택 (선택자 한정 지정 가능)
 			$("#btn1").on("click", function() {
 				$("ul").children()
 					.css({"border": "2px solid red"});
 			});
 
+
+			// .find() : 전달받은 선택자에 해당하는 자손 요소를 모두 선택 ( * 선택자를 통해 전체 지정 가능)
 			$("#btn2").click(function(){
 				$(".finder").find("span")
 				  .css({"border": "2px solid red"});
