@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+      var dog = {name: "식빵", family: "웰시코기", age: 1, weight: 2.14}; // 자바스크립트 객체
+      var jsondog = '{"name": "식빵", "family": "웰시코기", "age": 1, "weight": 2.14}'; // json 문자열
+      // JSON.stringify() : 객체 타입을 문자열로 전환
+      var data = JSON.stringify(dog);
+      // JSON.parse() : 문자열을 객체 타입으로 변환
+      var jsondata = JSON.parse(jsondog);
+      // Jquery 내에서도 동일 기능을 지원
+      var jquertdata = jQuery.parseJSON(jsondog);
+
+      var date = new Date();
+      // .toJSON : 객체의 데이터를 JSON 형식의 문자열로 변환하여 반환
+      var str = date.toJSON();
+
+      $(function(){
+        $('.text1').html(data);
+
+        $('.text2').html(jsondata.name);
+        $('.text2').append("<span>,&nbsp</span>" + jsondata.family);
+        $('.text2').append("<span>,&nbsp</span>" + jsondata.age);
+        $('.text2').append("<span>,&nbsp</span>" + jsondata.weight);
+
+        $('.text3').html(jquertdata.name);
+        $('.text3').append("<span>,&nbsp</span>" + jquertdata.family);
+        $('.text3').append("<span>,&nbsp</span>" + jquertdata.age);
+        $('.text3').append("<span>,&nbsp</span>" + jquertdata.weight);
+
+        $('.text4').html(str);
+
+
+      });
+
+
+    </script>
+  </head>
+  <body>
+    JSON.stringify : <p class="text1"></p>
+    JSON.parse : <p class="text2"></p>
+    JQuery.parse : <p class="text3"></p>
+    ToJSON : <p class="text4"></p>
+
+  </body>
+</html>
