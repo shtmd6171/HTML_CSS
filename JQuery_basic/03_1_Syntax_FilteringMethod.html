@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Filterring Method</title>
+	</script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script>
+		/*
+	- 필터링(filtering) 메소드
+	  DOM 트리에서 선택한 요소를 필터링하기 위한 메소드는 다음과 같습니다.
+			1. .first() : 선택한 요소 중에서 첫 번째 요소를 선택
+			2. .last() : 선택한 요소 중에서 마지막 요소를 선택
+			3. .eq() : 선택한 요소 중에서 전달받은 인덱스에 해당하는 요소를 선택 (맨 처음 요소를 인덱스 0, 앞부터 검색)
+		  4. .filter() :  선택한 요소 중에서 전달받은 선택자에 해당하거나, 함수 호출의 결과가 참(true)인 요소 모두 선택
+		  5. .not() : 선택한 요소 중에서 전달받은 선택자에 해당하거나, 함수 호출의 결과가 참(true)인 요소를 제외한 나머지 요소 모두 선택
+    */
+		$(function() {
+			//.first() : 선택한 요소 중에서 첫 번째 요소를 선택
+			$("#firstBtn").click(function() {
+				$("li").first().css("color","orange");
+			});
+
+
+			//.last() : 선택한 요소 중에서 마지막 요소를 선택
+			$("#lastBtn").click(function() {
+				$("li").last().css("color","orange");
+			});
+
+
+			//.eq() : 선택한 요소 중에서 전달받은 인덱스에 해당하는 요소를 선택 (맨 처음 요소를 인덱스 0, 앞부터 검색)
+			$("#eqBtn").click(function() {
+				// eq(1)은 두번째 요소임 (첫번째가 0)
+				$("li").eq(1).css("color","orange");
+			});
+
+
+			//.filter() :  선택한 요소 중에서 전달받은 선택자에 해당하거나, 함수 호출의 결과가 참(true)인 요소 모두 선택
+			$("#filterBtn").click(function() {
+				$("li").filter(":odd").css("color","orange");
+			});
+
+
+			//.not() : 선택한 요소 중에서 전달받은 선택자에 해당하거나, 함수 호출의 결과가 참(true)인 요소를 제외한 나머지 요소 모두 선택
+			$("#notBtn").click(function() {
+				$("li").not(":odd").css("color","orange");
+			});
+
+		});
+	</script>
+</head>
+
+<body>
+	<h1>.first() 메소드와 .last() 메소드</h1>
+	<ul>
+		<li>첫 번째 </li>
+		<li>두 번째 </li>
+		<li>세 번째 </li>
+		<li>네 번째 </li>
+		<li>다섯 번째 </li>
+		<li>여섯 번째 </li>
+		<li>일곱 번째 </li>
+	</ul>
+	<button id="firstBtn">first()</button>
+	<button id="lastBtn">last()</button>
+	<button id="eqBtn">eq()</button>
+	<button id="filterBtn">filter()</button>
+	<button id="notBtn">not()</button>
+</body>
+
+</html>
