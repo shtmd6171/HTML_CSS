@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScript Node Manage</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script type="text/javascript">
+        /*
+        문서 객체 모델(DOM)이란?
+          HTML 문서나 XML 문서에 접근하기 위한 인터페이스
+          문서 내의 모든 요소의 목적과 특징을 정의하고, 각각의 요소에 접근하는 방법을 제공
+
+         DOM 요소의 선택
+          자바스크립트로 DOM 요소를 다루기 위해서는 우선 해당 요소를 선택해야만 합니다.
+
+         DOM 요소를 선택하는 방법은 다음과 같습니다.
+          1. 태그 이름(tag name)을 이용한 선택
+          2. 아이디(id)를 이용한 선택
+          3. 클래스(class)를 이용한 선택
+          4. CSS 선택자(selector)를 이용한 선택
+          5. HTML 객체 집합(object collection)을 이용한 선택
+
+         노드 트리(node tree)
+          문서의 정보는 노드 트리(node tree)라고 불리는 계층적 구조에 저장됩니다.
+
+        */
+
+        $(function() {
+          // 노드의 추가
+
+            // appendChild()의 Jquery 요소
+            $("#btn1").click(function(){
+                $("#item").appendTo("#list");
+            });
+            // insertBefore()의 Jquery 요소
+            $("#btn2").click(function(){
+                $("#item").insertBefore("#JQ");
+            });
+
+        });
+      </script>
+  </head>
+  <body>
+    <h1>appendChild() 메소드</h1>
+	   <h2 id="item">JavaScript</h2>
+	    <div id="list">
+		    <p>HTML</p>
+		    <p>CSS</p>
+		    <p id="JQ">JQuery</p>
+	    </div>
+	<button id="btn1">appendTo</button>
+  <button id="btn2">insertBefore</button>
+
+  </body>
+</html>
