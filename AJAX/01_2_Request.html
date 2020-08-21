@@ -78,28 +78,32 @@
               }
                 // 동기화 항목이 false라 위의 텍스트가 2초 뒤에 생성된다.
                 httpRequest.open("POST","01_2_Request_.php",false);
-                /* HTTP요청 헤더의 값을 설정한다.
-                   XMLHttpRequest.setRequestHeader(header, value);
-                   open()뒤에 호출하여야 하며, 또한 send()가 호출되기 전에 호출해야 한다
 
-                   header 정보의 자세한 설명은
-                   https://developer.mozilla.org/ko/docs/Web/API/XMLHttpRequest/setRequestHeader 를 참조할 것
+                /* POST 요청은 서버로 전송할 데이터가 HTTP 헤더에 포함되어 전송한다
+                  따라서 setRequestHeader() 메소드를 이용하여 먼저 헤더를 작성한 후에, send() 메소드로 데이터를 전송
 
-                   Content-Type은 request에 실어 보내는 데이터(body)의 type의 정보를 표현한다.
-                   Text타입은 text/css, text/javascript, text/html, text/plain 등
-                   File타입은 multipart/formed-data
-                   Application타입은 application/x-www-form-urlencode, application/json
+                  setRequestHeader() : HTTP 요청 헤더의 값을 설정한다.
+                     XMLHttpRequest.setRequestHeader(header, value);
+                     open()뒤에 호출하여야 하며, 또한 send()가 호출되기 전에 호출해야 한다
 
-                   이 때,
+                     header 정보의 자세한 설명은
+                     https://developer.mozilla.org/ko/docs/Web/API/XMLHttpRequest/setRequestHeader 를 참조할 것
 
-                   application/x-www-form-urlencode
-                   타입은 Web 개발시,
-                     1. JS(Jquery)를 이용해 Ajax 서버에 데이터를 요청
-                     2. HTML form 타입을 사용해 요청
-                   한다. Content-Type를 따로 기입하지 않은 경우는 application/x-www-form-urlencode로 지정된다.
+                     Content-Type은 request에 실어 보내는 데이터(body)의 type의 정보를 표현한다.
+                     Text타입은 text/css, text/javascript, text/html, text/plain 등
+                     File타입은 multipart/formed-data
+                     Application타입은 application/x-www-form-urlencode, application/json
 
-                   application/json
-                   타입은 JSON형태의 데이터를 이용해 Android, IOS의 앱을 개발하기 위해 사용된다.
+                     이 때,
+
+                     application/x-www-form-urlencode
+                     타입은 Web 개발시,
+                       1. JS(Jquery)를 이용해 Ajax 서버에 데이터를 요청
+                       2. HTML form 타입을 사용해 요청
+                     한다. Content-Type를 따로 기입하지 않은 경우는 application/x-www-form-urlencode로 지정된다.
+
+                     application/json
+                     타입은 JSON형태의 데이터를 이용해 Android, IOS의 앱을 개발하기 위해 사용된다.
 
                 */
                 httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
