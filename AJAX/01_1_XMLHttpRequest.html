@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>XMLHttpRequest</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script type="text/javascript">
+        /* XMLHttpRequest란?
+            Ajax에서 XMLHttpRequest 객체는 웹 브라우저가 서버와 데이터를 교환할 때 사용
+
+           XMLHttpRequest 객체의 생성
+            1. XMLHttpRequest 객체를 이용한 방법 (대부분 이것을 채택) [var 변수이름 = new XMLHttpRequest();]
+            2. ActiveXObject 객체를 이용한 방법 [var 변수이름 = new ActiveXObject("Microsoft.XMLHTTP");]
+
+        */
+
+        // 모든 웹 브라우저에서 XMLHttpRequest 인스턴스를 제대로 생성하기 위해서는 이와 같이 작성.
+        var httpRequest;
+        function createRequest() {
+          if(window.XMLHttpRequest) {
+            // EX7 이상, 크롬, 파폭, 사파리, 오페라면 1번 방식
+            return new XMLHttpRequest();
+          } else {
+            // EX6 이하면 2번 방식
+            return new ActiveXObject("Microsoft.XMLHTTP");
+          }
+        }
+
+        // 대부분 채택한 것으로 이와 같은 방식으로 사용함.
+        var httpRequest = new XMLHttpRequest();
+      </script>
+  </head>
+  <body>
+    <h1>XMLHttpRequest</h1>
+
+
+  </body>
+</html>
