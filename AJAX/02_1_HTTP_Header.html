@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Ajax Response Header</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script type="text/javascript">
+        /*
+        HTTP 응답 헤더
+         Ajax에서는 서버로부터 전달받은 HTTP 응답 헤더 내용을 다음 메소드를 통해 확인 가능
+         1. getAllResponseHeaders() 메소드 :  HTTP 응답 헤더의 모든 헤더를 문자열로 반환
+         2. getResponseHeader() 메소드 :  HTTP 응답 헤더 중 인수로 전달받은 이름과 일치하는 헤더의 값을 문자열로 반환
+
+        HTTP 요청 헤더
+         Ajax에서는 요청을 보내기 전 setRequestHeader(header, value) 메소드를 사용하여 HTTP 요청 헤더 작성한다.
+        */
+        $(function() {
+          $("#btn").click(function() {
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.onreadystatechange = function()
+            {
+              if(httpRequest.readyState == XMLHttpRequest.DONE && httpRequest.status == 200)
+                 {
+                   $("#text").html(httpRequest.responseText);
+                   $("#header").html(httpRequest.getAllResponseHeaders());
+                   $("#user").html(httpRequest.getResponseHeader("testheader"));
+                 }
+            }
+            httpRequest.open("GET","./02_1_HTTP_Header_.php",true);
+            httpRequest.send();
+          });
+        });
+
+      </script>
+  </head>
+  <body>
+    <h1>Ajax Response Header</h1>
+    <p id="text"></p><br>
+    <p id="header"></p><br>
+    <p id="user"></p><br>
+    <button id="btn">REQUEST</button>
+
+
+  </body>
+</html>
