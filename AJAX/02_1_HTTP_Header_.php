@@ -10,7 +10,7 @@
   XML 형태의 메세지를 확인하기 위해서는 다음과 같이 Content-Type을 text/xml로 지정해줘야 한다.
   */
   header("Content-Type: text/xml");
-  // echo "HELLO<br>";
+   echo "HELLO<br>";
 
 ?>
 <message>
