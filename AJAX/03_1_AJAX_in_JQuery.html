@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Ajax in JQuery</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script type="text/javascript">
+        $(function() {
+          /* $.ajax() 메소드
+             $.ajax() 메소드는 모든 제이쿼리 Ajax 메소드(get,post,getJSON)의 통합된 내용을 가진다.
+             $.ajax()는 비동기식 방식으로 따로 지정하지 않는다.
+
+             $.ajax() 메소드의 원형은 다음과 같다.
+               $.ajax([옵션])
+
+             $.ajax() 메소드에서 사용할 수 있는 대표적인 옵션
+               $.ajax({
+                 url: "example.php",        // 클라이언트가 요청을 보낼 서버의 URL 주소
+                 data: { name: "example" }, // HTTP 요청과 함께 서버로 보낼 데이터
+                 type: "GET",               // HTTP 요청 방식(GET, POST)
+                 dataType: "json"           // 서버에서 보내줄 데이터의 타입
+                 })
+                 .done(function(){ HTTP 요청이 성공시 전달 })
+                 .fail(function(){ HTTP 요청이 실패시 전달 })
+                 .always(function(){ HTTP 요청이 성공 실패 관계없이 전달 })
+          */
+          $("#ajax").click(function(){
+            $.ajax("./03_1_AJAX_in_JQuery_.php")
+            /* done 메소드는 지금까지의
+            if(httpRequest.readyState == XMLHttpRequest.DONE && httpRequest.status == 200) {}
+            내용이 간소화 한 것
+            */
+            .done(function(){
+              alert("done");
+            })
+            // fail 메소드는 httpRequest.status == 404의 내용이 간소화 된 것
+            .fail(function(){
+              alert("fail");
+            })
+            .always(function(){
+              alert("always");
+            });
+          });
+
+
+
+          /* jQuery.[get | post]( url [, data] [, success(data, textStatus, jqXHR)] [, dataType] )
+             1. url : 클라이언트가 HTTP 요청을 보낼 서버의 주소
+
+             2. data : 요청과 함께 보낼 데이터
+
+             3. success(data, textStatus, jqXHR) : 요청이 성공할 때 실행되는 콜백 함수
+               3-1. data : function에서의 첫 param인 data는 반환되는 실제 데이터를 의미한다.
+                    XMLHttpRequest.responseText와 같은 역할을 한다.
+
+               3-2. textStatus : function에서의 두번째 param인 textStatus는
+                    XMLHttpRequest.status와 같은 역할을 한다. 단, 문자로 표시된다.
+
+               3-3. jqXHR :  function에서의 세번째 param인 jqXHR는
+                    XMLHttpRequest 객체의 대체 역할을 한다.
+                    Jquery 형식에 맞게 param과 메소드는 약간 다른 형태로 존재한다.
+
+             4. dataType : 서버의 data 형식
+
+             httpRequest.open("GET","01_2_Request_.php?city=Seoul&zipcode=06141",true) 의 내용이
+             $.get("./01_2_Request_.php?city=Seoul&zipcode=06141" 로 간소화 되었다.
+          */
+          $("#get").click(function()
+          {
+            $.get("./01_2_Request_.php",
+            {city : "Seoul", zipcode : "06141"},
+            function(data,status,request){
+              $("#get_text").html("data :"+data+"<br>textStatus : "+status+"<br>jqXHR : "+request+"<br>");
+            });
+          });
+          /* httpRequest.open("POST","01_2_Request_.php",false);
+             httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            httpRequest.send("city=Seoul&zipcode=06141"); 의 내용이
+            $.post("./01_2_Request_.php" 로 간소화 되었다.
+          */
+          $("#post").click(function()
+          {
+            $.post("./01_2_Request_.php",
+            {city : "Seoul", zipcode : "06141"},
+            function(data,status,request){
+              $("#post_text").html("data :"+data+"<br>textStatus : "+status+"<br>jqXHR : "+request+"<br>");
+            });
+          });
+
+
+
+          /* load() 메소드
+             oad() 메소드는 선택한 요소에서 호출하는 유일한 제이쿼리 Ajax 메소드다. ( ajax()로 대체 불가 )
+             load() 메소드는 서버에서 데이터를 읽은 후, 읽어 들인 HTML 코드를 선택한 요소에 배치한다.
+             선택자를 URL 주소와 함께 전송하면 해당 선택자의 일치 요소만 배치한다.
+
+             ajax()와 load()는 모두 서버의 요청을 통해 데이터를 가져오지만,
+             load()의 경우는 필요한 데이터만을 가져오는 간소화된 비동기 호출로
+          */
+          $("#btn2").click(function(){
+            //03_1_AJAX_in_JQuery_.php에서 p의 태그 내용만을 불러온다.
+            $("#text").load("./03_1_AJAX_in_JQuery_.php p");
+          });
+
+
+        });
+      </script>
+  </head>
+  <body>
+    <h1>Ajax in JQuery</h1>
+    <button id="ajax">REQUEST AJAX()</button><br>
+    <p id="get_text">get()</p>
+    <button id="get">REQUEST get()</button><br>
+    <p id="post_text">post()</p>
+    <button id="post">REQUEST post()</button><br>
+    <p id="text">load()</p>
+    <button id="btn2">REQUEST LOAD()</button>
+
+  </body>
+</html>
