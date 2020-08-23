@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Frequency Request</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      /* 주기적으로 Ajax 요청
+         주기적으로 Ajax 요청을 보내도록 설정하여, 실시간 서비스와 비슷한 동작을 하도록 만들 수 있다.
+         주기적으로 요청을 보내는 방식에는 다음 두가지 메소드로 구분된다.
+           1. setInterval (function, milliseconds) : 일정 시간 간격을 두고 함수를 실행한다.
+           2. setTimeout (function, milliseconds) : 일정 시간이 지난 후에 함수를 실행한다.
+      */
+      $(function() {
+
+        //setInterval()을 이용한 주기적 Ajax 요청
+        function sendRequest_Interval()
+        {
+          var httpRequest = new XMLHttpRequest();
+          httpRequest.onreadystatechange = function ()
+          {
+           if(httpRequest.readyState == XMLHttpRequest.DONE &&
+              httpRequest.status == 200)
+              {
+                $("#text").html(httpRequest.responseText);
+              }
+          }
+          httpRequest.open("GET","./02_3_Frequency_Request_.php",true);
+          httpRequest.send();
+        }
+        /* window.setInterval(function, milliseconds)은
+           function을 milliseconds의 주기만큼 반복 실행한다
+
+           이 때 function은 parameta 내부에서 다음과 같이 선언해줘야 한다 (setTimeout()도 동일)
+             1. 익명 객체 (function() {})를 즉시 할당하는 방법
+             2. 메소드를 참조값으로 전달하는 형태로 전달하는 방법
+
+           현재는 2번의 방식을 사용하였다. (sendRequest_Interval,500)
+           만약 메소드를 그대로 할당하는 방법을 사용하면 (sendRequest_Interval(),500)
+           setInterval 함수가 실행되지 않는다.
+           왜냐면, setInterval()는 함수의 '참조 값'을 전달 받도록 정의되어 있다.
+           그러나 sendRequest_Interval()는 '함수 실행 결과'를 전달하기 때문.
+
+
+           한편, setInterval() 의 반환값은 설정된 타이머 ID이고 (이 ID를 이해할 필요는 없다)
+           이 반환값은 clearInterval()의 parameta으로 사용된다
+           clearInterval() 메소드는 setInterval()메소드를 중단시킨다
+
+        */
+          sendRequest_Interval();
+          var interval = window.setInterval(sendRequest_Interval,500);
+        /* clearInterval()를 이용해 setInterval() 메소드를 중단
+           stop버튼을 눌러 0.5초마다 갱신되는 Request를 중단시킨다.
+        */
+        $("#stop").click(function() {
+          window.clearInterval(interval);
+        })
+
+
+
+        /* setTimeout()을 이용한 주기적 Ajax 요청
+
+           setInterval방식은 0.5초마다  XMLHttpReques 객체를 초기화 하는데
+           서버 응답이 0.5초가 넘어가게 되면 서버는 준비가 되어있지 않아
+           아무것도 표기 되지 않는 상황이 발생한다.
+           setTimeout()을 이용하면 서버가 응답한 후에 시간을 재기 때문에 이 문제를 해결할 수 있다.
+        */
+        function sendRequest_Timeout()
+        {
+          var httpRequest = new XMLHttpRequest();
+          httpRequest.onreadystatechange = function ()
+          {
+           if(httpRequest.readyState == XMLHttpRequest.DONE &&
+              httpRequest.status == 200)
+              {
+                $("#text2").html(httpRequest.responseText);
+                // interval과 다르게 if문 내부에서 사용해보기 위해 반환값(timeout)을 전역번수로 선언했다.
+                timeout = window.setTimeout(sendRequest_Timeout,500);
+              }
+          }
+          httpRequest.open("GET","./02_3_Frequency_Request_.php",true);
+          httpRequest.send();
+        }
+          sendRequest_Timeout();
+        /* clearTimeout() 메소드를 이용해 setTimeout() 메소드를 중단
+           stop버튼을 눌러 0.5초마다 갱신되는 Request를 중단시킨다.
+        */
+        $("#stop2").click(function() {
+          /*
+             setTimeout()과 setInterval()는 같은 ID 공간을 공유하기 때문에,
+             clear 메소드를 사용할 때 뭔가 문제가 있는 것 같다..
+             22번째 줄 if문 내부에서 setInterval 반환값을 전역변수로 받으면 문제가 생긴다..
+             따로 사용해보면 문제가 없을 것 같긴 하다.
+          */
+          window.clearTimeout(timeout);
+        });
+
+
+        /* XMLHttpRequest.abort()를 이용하면 응답이 오기 전, 요청을 중단시킬 수 있다.
+          clearInterval, clearTimeout과 무슨 차이가 있냐고 생각할 수 있지만
+          사실 clear 메소드들은 일시중지의 기능이다.
+          abort의 경우는 Request 자체를 중단하는 것이다.
+          자세한 설명은 하단을 참조할 것
+          https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/abort
+        */
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Frequency Request</h1>
+    <p id="text"></p>
+    <button id="stop">STOP REQUEST setInterval()</button>
+    <p id="text2"></p>
+    <button id="stop2">STOP REQUEST setTimeout()</button><br>
+
+  </body>
+</html>
